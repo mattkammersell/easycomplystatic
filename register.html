@@ -1,38 +1,50 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Register — EasyComply</title>
-  <meta name="description" content="Register interest in EasyComply for subscribers, providers, officers, attorneys, and related professionals." />
-  <link rel="stylesheet" href="/assets/styles.css" />
-</head>
-<body>
-  <header class="site-header">
-    <nav class="nav" aria-label="Main navigation">
-      <a class="brand" href="/index.html"><span class="brand-mark">E</span><span>EasyComply</span></a>
-      <div class="nav-links">
-        <a href="/about.html">About</a>
-        <a href="/register.html">Register</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/privacy.html">Privacy</a>
-        <a class="button" href="/register.html">Get Started</a>
-      </div>
-    </nav>
-  </header>
 
   <main class="page">
     <div class="page-header">
-      <h1>Register Interest</h1>
-      <p>Use this page to start registration as a subscriber, provider, officer, attorney, court-related professional, or other interested party.</p>
+      <h1>Register for EasyComply</h1>
+      <p>Register to receive EasyComply notice support. EasyComply helps put daily compliance information in front of you. You remain responsible for acting on your requirements.</p>
     </div>
 
-    <div class="form-shell">
-      <h2>Continue to registration</h2>
-      <p class="fine-print">This button sends visitors to the live Google Form. Replace the href value with your final Google Form link.</p>
-      <p><a class="button" href="GOOGLE_FORM_URL">Open Registration Form</a></p>
+    <div id="registration-panel" class="form-shell">
+      <h2>Registration</h2>
+      <p class="fine-print">Enter the phone number and email address where EasyComply should contact you.</p>
 
-      <div class="callout">Registration does not change any existing obligation. Subscribers remain responsible for checking requirements, understanding instructions, and taking required action.</div>
+      <form
+        id="easycomply-registration-form"
+        class="form-grid"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfyGXxmOGgLtzPD0H6hvrD1fTQl-B7lxds8Ey3xBYRXFIDJJA/formResponse"
+        method="post"
+        target="hidden-google-form-frame"
+      >
+        <label>
+          Probation office
+          <select name="entry.1339445019" required>
+            <option value="C&D Court Services" selected>C&amp;D Court Services</option>
+          </select>
+        </label>
+
+        <label>
+          Phone
+          <input name="entry.1538498336" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(555) 555-5555" />
+        </label>
+
+        <label>
+          Email
+          <input name="entry.568816164" type="email" autocomplete="email" required placeholder="name@example.com" />
+        </label>
+
+        <button class="button" type="submit">Submit Registration</button>
+      </form>
+
+      <iframe name="hidden-google-form-frame" id="hidden-google-form-frame" style="display:none;"></iframe>
+    </div>
+
+    <div id="success-panel" class="form-shell" hidden>
+      <h2>Registration received</h2>
+      <p>Your registration information has been submitted. EasyComply will use the phone number and email address provided to continue setup.</p>
+      <div class="callout">Submitting registration does not change any compliance obligation. Continue following all instructions from your probation company and any applicable court, officer, attorney, or testing provider.</div>
+      <p><a class="button secondary" href="/index.html">Return Home</a></p>
     </div>
   </main>
 
@@ -42,6 +54,19 @@
       <span><a href="/index.html">Home</a> · <a href="/about.html">About</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></span>
     </div>
   </footer>
+
+  <script>
+    const form = document.getElementById("easycomply-registration-form");
+    const registrationPanel = document.getElementById("registration-panel");
+    const successPanel = document.getElementById("success-panel");
+
+    form.addEventListener("submit", function () {
+      window.setTimeout(function () {
+        registrationPanel.hidden = true;
+        successPanel.hidden = false;
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 700);
+    });
+  </script>
 </body>
 </html>
-
